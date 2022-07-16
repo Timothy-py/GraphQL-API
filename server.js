@@ -12,7 +12,7 @@ const {
 
 const app = express()
 
-const users = [
+const authors = [
     {"id":1,"name":"Genna"},
     {"id":2,"name":"Bevon"},
     {"id":3,"name":"Theobald"},
@@ -49,9 +49,31 @@ const BookType = new GraphQLObjectType({
     fields: () => ({
         id: {type: GraphQLNonNull(GraphQLInt)},
         name: {type: GraphQLNonNull(GraphQLString)},
-        authorId: {type: GraphQLNonNull(GraphQLInt)}
+        authorId: {type: GraphQLNonNull(GraphQLInt)},
+        author: {
+            type: AuthorType,
+            resolve: (book) => {
+                return authors.find(author => author.id === book.authorId)
+            }
+        }
     })
 })
+
+const AuthorType = new GraphQLObjectType({
+    name: 'Author',
+    description: 'This represents an author of a book',
+    fields: () => ({
+        id: {type: GraphQLNonNull(GraphQLInt)},
+        name: {type: GraphQLNonNull(GraphQLString)},
+        books: {
+            type: GraphQLList(BookType),
+            resolve: (author) => {
+                return books.filter(book => book.authorId === author.id)
+            }
+        }
+    })
+})
+
 const RootQueryType = new GraphQLObjectType({
     name: 'Query',
     description: 'Root Query',
@@ -60,6 +82,11 @@ const RootQueryType = new GraphQLObjectType({
             type: new GraphQLList(BookType),
             description: 'List of All Books',
             resolve: () => books
+        },
+        authors: {
+            type: new GraphQLList(AuthorType),
+            description: 'List of All Authors',
+            resolve: () => authors
         }
     })
 })
