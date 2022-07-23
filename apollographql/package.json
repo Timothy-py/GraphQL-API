@@ -1,0 +1,15 @@
+{
+  "name": "apollographql",
+  "version": "1.0.0",
+  "description": "Graphql API with Apollo Server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Graphql",
+    "API"
+  ],
+  "author": "Timothy-py",
+  "license": "ISC"
+}
