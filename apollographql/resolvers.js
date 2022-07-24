@@ -1,7 +1,12 @@
+const Post = require('./models/post')
+
 const resolvers = {
     Query: {
         hello: () => {
-            return 'Hellow World'
+            return 'Hello World'
+        },
+        getAllPosts: async () => {
+            return await Post.find();
         }
     }
 }
