@@ -1,18 +1,9 @@
 const express = require('express')
-const {ApolloServer, gql} = require('apollo-server-express')
+const {ApolloServer} = require('apollo-server-express')
+const typeDefs = require('./typeDefs')
+const resolvers = require('./resolvers')
 
-const typeDefs = gql`
-    type Query {
-        hello: String
-    }
-`
-const resolvers = {
-    Query: {
-        hello: () => {
-            return 'Hellow World'
-        }
-    }
-}
+
 
 async function startSever() {
     const app = express()
