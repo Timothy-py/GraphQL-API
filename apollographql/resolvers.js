@@ -8,6 +8,15 @@ const resolvers = {
         getAllPosts: async () => {
             return await Post.find();
         }
+    },
+
+    Mutation: {
+        createPost: async (parent, args, context, info) => {
+            const {title, description} = args
+            const post = new Post({title, description})
+            await post.save()
+            return post;
+        }
     }
 }
 

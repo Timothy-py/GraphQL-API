@@ -22,7 +22,7 @@ async function startSever() {
         res.send('Hello from express apollo server')
     })
 
-    app.listen(4000, () =>  console.log('Server is running on port 4000'))
+    app.listen(5000, () =>  console.log('Server is running on port 5000'))
 
     await mongoose.connect('mongodb://localhost:27017/post_db', {
         useUnifiedTopology: true,
