@@ -7,6 +7,9 @@ const resolvers = {
         },
         getAllPosts: async () => {
             return await Post.find();
+        },
+        getPost: async (parent, {id}, context, info) => {
+            return await Post.findById(id)
         }
     },
 

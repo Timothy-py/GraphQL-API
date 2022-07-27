@@ -11,6 +11,8 @@ const typeDefs = gql`
         hello: String
 
         getAllPosts: [Post]
+
+        getPost(id: ID): Post
     }
 
     input PostInput {
