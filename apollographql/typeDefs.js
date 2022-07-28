@@ -24,6 +24,8 @@ const typeDefs = gql`
         createPost(post: PostInput): Post
         
         deletePost(id: ID): String
+
+        updatePost(id: ID, post: PostInput): Post
     }
 `
 module.exports = typeDefs
